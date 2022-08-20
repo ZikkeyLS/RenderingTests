@@ -1,0 +1,11 @@
+Model Information:
+* title:	Did someone say Sushi?
+* source:	https://sketchfab.com/3d-models/did-someone-say-sushi-3b3e4d1af0fd4a62bb0b628d358fe492
+* author:	Suushimi (https://sketchfab.com/Suushimi)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Did someone say Sushi?" (https://sketchfab.com/3d-models/did-someone-say-sushi-3b3e4d1af0fd4a62bb0b628d358fe492) by Suushimi (https://sketchfab.com/Suushimi) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

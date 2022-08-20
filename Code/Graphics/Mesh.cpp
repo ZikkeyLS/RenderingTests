@@ -54,9 +54,10 @@ void Mesh::Draw(Shader& shader, Camera& camera)
 	glm::mat4 rotationMatrix = glm::mat4(1.0f);
 	glm::mat4 scaleMatrix = glm::mat4(1.0f);
 
+	// Transform the matrices to their correct form
 	translationMatrix = glm::translate(translationMatrix, position);
 	rotationMatrix = glm::mat4_cast(rotation);
-	scaleMatrix = glm::scale(scaleMatrix, this->scale);
+	scaleMatrix = glm::scale(scaleMatrix, scale);
 
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "position"), 1, GL_FALSE, glm::value_ptr(translationMatrix));
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "rotation"), 1, GL_FALSE, glm::value_ptr(rotationMatrix));

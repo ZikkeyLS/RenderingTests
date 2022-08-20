@@ -151,6 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="Shaders\skybox.frag" />
+    <None Include="Shaders\skybox.vert" />
+    <_EmbedManagedResourceFile Include="assimp-vc143-mtd.dll">
+      <FileType>Document</FileType>
+    </_EmbedManagedResourceFile>
     <None Include="Shaders\default.frag" />
     <None Include="Shaders\default.vert" />
   </ItemGroup>

@@ -34,6 +34,12 @@
     <None Include="Shaders\default.frag">
       <Filter>Resources\Shaders</Filter>
     </None>
+    <None Include="Shaders\skybox.vert">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="Shaders\skybox.frag">
+      <Filter>Resources\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Graphics\EBO.cpp">
@@ -101,5 +107,8 @@
     <ClInclude Include="Code\Graphics\Model.h">
       <Filter>Code\Graphics</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <_EmbedManagedResourceFile Include="assimp-vc143-mtd.dll" />
   </ItemGroup>
 </Project>

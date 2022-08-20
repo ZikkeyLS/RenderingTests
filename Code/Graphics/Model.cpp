@@ -34,7 +34,21 @@ void Model::ProcessNode(aiNode* node, const aiScene* scene)
     {
         aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 
-        modelParts.push_back(ProcessModelPart(mesh, scene));
+        ModelPart modelPart = ProcessModelPart(mesh, scene);
+
+        aiVector3D position;
+        aiQuaternion rotation;
+        aiVector3D scale;
+
+        node->mTransformation.Decompose(scale, rotation, position);
+
+        if(node->mParent != nullptr)
+            modelPart.Position = glm::vec3(position.x, position.y, position.z);
+
+        modelPart.Rotation = glm::quat(rotation.w, rotation.x, rotation.y, rotation.z);
+        modelPart.Scale = glm::vec3(scale.x, scale.y, scale.z);
+
+        modelParts.push_back(modelPart);
     }
     // then do the same for each of its children
     for (unsigned int i = 0; i < node->mNumChildren; i++)

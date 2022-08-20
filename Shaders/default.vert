@@ -9,7 +9,6 @@ layout (location = 2) in vec3 aColor;
 // Texture Coordinates
 layout (location = 3) in vec2 aTex;
 
-
 // Outputs the current position for the Fragment Shader
 out vec3 currentPos;
 // Outputs the normal for the Fragment Shader

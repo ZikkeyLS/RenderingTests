@@ -17,8 +17,9 @@ public:
 	glm::vec3 Position;
 
 	glm::vec3 Forward = glm::vec3(0.0f, 1.0f, 0.0f);
-	glm::vec3 Up = glm::vec3(0.0f, 0.0f, 1.0f);
+	glm::vec3 Up = glm::vec3(0.0f, 0.0f, -1.0f);
 	glm::vec3 Right = glm::vec3(1.0f, 0.0f, 0.0f);
+	glm::vec3 Orientation = glm::vec3(0.0f, -1.0f, 0.0f);
 
 	bool firstClick = true;
 
@@ -34,7 +35,6 @@ public:
 	void Matrix(Shader& shader, const char* uniform);
 	void Inputs(GLFWwindow* window, float delta);
 private:
-	glm::vec3 orientation = glm::vec3(0.0f, -1.0f, 0.0f);
 	glm::mat4 cameraMatrix = glm::mat4(1.0f);
 };
 

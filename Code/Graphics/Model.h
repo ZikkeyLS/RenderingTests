@@ -19,7 +19,7 @@ public:
 	std::vector<GLuint>& GetIndices();
 	std::vector<Texture>& GetTextures();
 
-	glm::vec3 Position;
+	glm::vec3 Position = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::quat Rotation;
 	glm::vec3 Scale;
 	glm::mat4 Matrix;
