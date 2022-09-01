@@ -78,6 +78,9 @@
     <ClCompile Include="Code\Graphics\Model.cpp">
       <Filter>Code\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Graphics\Skybox.cpp">
+      <Filter>Code\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Graphics\EBO.h">
@@ -105,6 +108,9 @@
       <Filter>Code\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Code\Graphics\Model.h">
+      <Filter>Code\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\Skybox.h">
       <Filter>Code\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

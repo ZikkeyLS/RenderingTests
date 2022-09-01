@@ -42,11 +42,19 @@ vec4 PointLight()
 	float diffuse = max(dot(normal, lightDirection), 0.0f);
 
 	// specular lighting
-	float specularLight = 0.50f;
-	vec3 viewDirection = normalize(camPos - currentPos);
-	vec3 reflectionDirection = reflect(-lightDirection, normal);
-	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16);
-	float specular = specAmount * specularLight;
+	float specular = 0.0f;
+
+	if(diffuse != 0.0f)
+	{
+		float specularLight = 0.50f;
+		vec3 viewDirection = normalize(camPos - currentPos);
+		vec3 reflectionDirection = reflect(-lightDirection, normal);
+
+		vec3 halfwayVec = normalize(viewDirection + lightDirection);
+
+		float specAmount = pow(max(dot(normal, halfwayVec), 0.0f), 16);
+		specular = specAmount * specularLight;
+	}
 
 	return (texture(diffuse0, texCoord) * (diffuse * intencity + ambient) + texture(specular0, texCoord).r * specular * intencity) * lightColor;
 }
@@ -58,15 +66,23 @@ vec4 DirectionalLight()
 
 	// diffuse lighting
 	vec3 normal = normalize(Normal);
-	vec3 lightDirection = normalize(vec3(1.0f, 1.0f, -2.0f));
+	vec3 lightDirection = normalize(vec3(0.0f, 0.0f, 2.0f));
 	float diffuse = max(dot(normal, lightDirection), 0.0f);
 
 	// specular lighting
-	float specularLight = 1f;
-	vec3 viewDirection = normalize(camPos - currentPos);
-	vec3 reflectionDirection = reflect(-lightDirection, normal);
-	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16);
-	float specular = specAmount * specularLight;
+	float specular = 0.0f;
+
+	if(diffuse != 0.0f)
+	{
+		float specularLight = 0.20f;
+		vec3 viewDirection = normalize(camPos - currentPos);
+		vec3 reflectionDirection = reflect(-lightDirection, normal);
+
+		vec3 halfwayVec = normalize(viewDirection + lightDirection);
+
+		float specAmount = pow(max(dot(normal, halfwayVec), 0.0f), 16);
+		specular = specAmount * specularLight;
+	}
 
 	return (texture(diffuse0, texCoord) * (diffuse + ambient) + texture(specular0, texCoord).r * specular) * lightColor;
 }
@@ -86,11 +102,19 @@ vec4 SpotLight()
 	float diffuse = max(dot(normal, lightDirection), 0.0f);
 
 	// specular lighting
-	float specularLight = 0.50f;
-	vec3 viewDirection = normalize(camPos - currentPos);
-	vec3 reflectionDirection = reflect(-lightDirection, normal);
-	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16);
-	float specular = specAmount * specularLight;
+	float specular = 0.0f;
+
+	if(diffuse != 0.0f)
+	{
+		float specularLight = 0.50f;
+		vec3 viewDirection = normalize(camPos - currentPos);
+		vec3 reflectionDirection = reflect(-lightDirection, normal);
+
+		vec3 halfwayVec = normalize(viewDirection + lightDirection);
+
+		float specAmount = pow(max(dot(normal, halfwayVec), 0.0f), 16);
+		specular = specAmount * specularLight;
+	}
 
 	// calculates the intensity of the currentPos based on its angle to the center of the light cone
 	float angle = dot(vec3(0.0f, 0.0f, -1.0f), -lightDirection);

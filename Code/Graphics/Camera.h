@@ -29,6 +29,7 @@ public:
 	float speed = 0.1f;
 	float sensitivity = 100.0f;
 
+	Camera() {}
 	Camera(int width, int height, glm::vec3 position);
 
 	void UpdateMatrixData(float FOV, float nearPlane, float farPlane);
