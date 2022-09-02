@@ -73,7 +73,7 @@ int main()
 		
 		std::string scale = std::to_string(basePart.Scale.x) + " " + std::to_string(basePart.Scale.y) + " " + std::to_string(basePart.Scale.z);
 
-		Logger::GetMain()->Log(scale);
+		mainLogger->Log(scale);
 	}
 
 
@@ -161,6 +161,8 @@ int main()
 
 	shaderProgram.Delete();
 	skyboxShader.Delete();
+
+	mainLogger->Delete();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();

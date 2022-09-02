@@ -8,6 +8,7 @@ class Logger
 public:
 	static Logger* GetMain();
 	Logger(std::string loggerName);
+	void Delete();
 	void Log(std::string message);
 	void LogWarning(std::string warning);
 	void LogError(std::string error);

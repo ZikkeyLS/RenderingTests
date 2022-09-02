@@ -12,6 +12,11 @@ Logger::Logger(std::string loggerName)
 	logger = spdlog::basic_logger_mt(loggerName, loggerPath, true);
 }
 
+void Logger::Delete() 
+{
+	spdlog::drop(logger.get()->name());
+}
+
 void Logger::Log(std::string message)
 {
 	logger->info(message);
