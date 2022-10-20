@@ -166,6 +166,7 @@
     <ClCompile Include="Code\Graphics\glad.c" />
     <ClCompile Include="Code\Graphics\Mesh.cpp" />
     <ClCompile Include="Code\Graphics\Model.cpp" />
+    <ClCompile Include="Code\Graphics\PointLight.cpp" />
     <ClCompile Include="Code\Graphics\Shader.cpp" />
     <ClCompile Include="Code\Graphics\Skybox.cpp" />
     <ClCompile Include="Code\Graphics\stb.cpp" />
@@ -178,8 +179,10 @@
     <ClInclude Include="Code\Debug\Logger.h" />
     <ClInclude Include="Code\Graphics\Camera.h" />
     <ClInclude Include="Code\Graphics\EBO.h" />
+    <ClInclude Include="Code\Graphics\Light.h" />
     <ClInclude Include="Code\Graphics\Mesh.h" />
     <ClInclude Include="Code\Graphics\Model.h" />
+    <ClInclude Include="Code\Graphics\PointLight.h" />
     <ClInclude Include="Code\Graphics\Shader.h" />
     <ClInclude Include="Code\Graphics\Skybox.h" />
     <ClInclude Include="Code\Graphics\Texture.h" />
