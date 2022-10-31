@@ -19,9 +19,7 @@ uniform sampler2D specular0;
 // Gets the position of the camera from the main function
 uniform vec3 camPos;
 
-#define MAX_LIGHTS 1024
-uniform int numLights;
-uniform struct Light {
+struct Light {
    int type;
 
    vec3 position;
@@ -33,7 +31,10 @@ uniform struct Light {
 
    float valueA;
    float valueB;
-} lights[MAX_LIGHTS];
+};
+
+#define MAX_LIGHTS 1024
+uniform Light allLights[MAX_LIGHTS];
 
 // Gets the color of the light from the main function
 uniform vec4 lightColor;
@@ -61,15 +62,15 @@ vec4 CalculatePointLight(Light light)
 	{
 		// specularlight default 0.5
 		vec3 viewDirection = normalize(camPos - currentPos);
-		vec3 reflectionDirection = reflect(-lightDirection, normal);
+		vec3 reflectionDirection = reflect(-light.direction, normal);
 
 		vec3 halfwayVec = normalize(viewDirection + light.direction);
 
 		float specAmount = pow(max(dot(normal, halfwayVec), 0.0f), 16);
-		specular = specAmount * light.specular;
+		specular = specAmount * specular;
 	}
 
-	return (texture(diffuse0, texCoord) * (diffuse * intencity + light.ambient) + texture(specular0, texCoord).r * specular * intencity) * lightColor;
+	return (texture(diffuse0, texCoord) * (diffuse * intencity + light.ambient) + texture(specular0, texCoord).r * specular * intencity) * light.color;
 }
 
 vec4 CalculateDirectionalLight(Light light)
@@ -96,7 +97,7 @@ vec4 CalculateDirectionalLight(Light light)
 		specular = specAmount * light.specularLight;
 	}
 
-	return (texture(diffuse0, texCoord) * (diffuse + ambient) + texture(specular0, texCoord).r * specular) * lightColor;
+	return (texture(diffuse0, texCoord) * (diffuse + light.ambient) + texture(specular0, texCoord).r * specular) * light.color;
 }
 
 vec4 CalculateSpotLight(Light light)
@@ -130,7 +131,7 @@ vec4 CalculateSpotLight(Light light)
 	float angle = dot(vec3(0.0f, 0.0f, -1.0f), -light.direction);
 	float inten = clamp((angle - light.valueA) / (light.valueB - light.valueA), 0.0f, 1.0f);
 
-	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient) + texture(specular0, texCoord).r * specular * inten) * lightColor;
+	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient) + texture(specular0, texCoord).r * specular * inten) * light.color;
 }
 
 float near = 0.1f;
@@ -157,20 +158,9 @@ void main()
 
 	vec4 globalLight = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
-	for(int i=-1; ++i < MAX_LIGHTS; )
+	for(int i = 0; i < MAX_LIGHTS; i++)
 	{
-		if(lights[i].type == 0) // point
-		{
-			globalLight = globalLight + CalculatePointLight(lights[i]);
-		}
-		else if(lights[i].type == 1) // directional
-		{
-			globalLight = globalLight + CalculateDirectionalLight(lights[i]);
-		}
-		else if(lights[i].type == 2) // spot
-		{
-			globalLight = globalLight + CalculateSpotLight(lights[i]);
-		}
+		
 	}
 
 	FragColor = globalLight * (1.0f - depth) + vec4(depth * vec3(0.85f, 0.85f, 0.90f), 1.0f);

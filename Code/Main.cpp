@@ -55,7 +55,7 @@ int main()
 	Shader skyboxShader("Shaders/skybox.vert", "Shaders/skybox.frag");
 
 	//Test Model
-	Model model = Model("Assets/Models/Scroll/scene.gltf");
+	Model model = Model("Assets/Models/Scroll/sity.fbx");
 
 	std::vector<Mesh> meshes;
 
@@ -86,6 +86,7 @@ int main()
 	shaderProgram.Activate();
 	glUniform4f(glGetUniformLocation(shaderProgram.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	glUniform1i(glGetUniformLocation(shaderProgram.ID, "numLights"), 0);
 	skyboxShader.Activate();
 	glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
 

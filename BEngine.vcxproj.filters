@@ -84,6 +84,10 @@
     <ClCompile Include="Code\Graphics\PointLight.cpp">
       <Filter>Code\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Graphics\DirectionalLight.cpp">
+      <Filter>Code\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Graphics\SpotLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Graphics\EBO.h">
@@ -120,6 +124,12 @@
       <Filter>Code\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Code\Graphics\Light.h">
+      <Filter>Code\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\DirectionalLight.h">
+      <Filter>Code\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Graphics\SpotLight.h">
       <Filter>Code\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
