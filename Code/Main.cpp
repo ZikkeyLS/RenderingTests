@@ -76,6 +76,8 @@ int main()
 		mainLogger->Log(scale);
 	}
 
+
+
 	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	// light pos doesn't work with directional lights)
