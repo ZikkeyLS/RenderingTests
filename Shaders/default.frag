@@ -36,11 +36,6 @@ struct Light {
 #define MAX_LIGHTS 1024
 uniform Light allLights[MAX_LIGHTS];
 
-// Gets the color of the light from the main function
-uniform vec4 lightColor;
-// Gets the position of the light from the main function
-uniform vec3 lightPos;
-
 vec4 CalculatePointLight(Light light)
 {
 	vec3 lightVec = light.position - currentPos;
@@ -160,7 +155,7 @@ void main()
 
 	for(int i = 0; i < MAX_LIGHTS; i++)
 	{
-		
+
 	}
 
 	FragColor = globalLight * (1.0f - depth) + vec4(depth * vec3(0.85f, 0.85f, 0.90f), 1.0f);
