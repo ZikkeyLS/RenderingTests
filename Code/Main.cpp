@@ -55,7 +55,7 @@ int main()
 	Shader skyboxShader("Shaders/skybox.vert", "Shaders/skybox.frag");
 
 	//Test Model
-	Model model = Model("Assets/Models/Scroll/sity.fbx");
+	Model model = Model("Assets/Models/city.fbx");
 
 	std::vector<Mesh> meshes;
 
