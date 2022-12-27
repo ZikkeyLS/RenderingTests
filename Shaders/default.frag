@@ -19,12 +19,13 @@ uniform sampler2D diffuse0;
 uniform sampler2D specular0;
 
 uniform float directionalLightAmbient;
+uniform float directionalLightSpecular;
 uniform vec4 directionalLightColor;
 uniform vec3 directionalLightDirection;
 
-#define MAX_LIGHTS 1024
-uniform int numLights;
-uniform struct Light {
+#define MAX_POINT_LIGHTS 1024
+uniform int pointLightsCount;
+uniform struct PointLightType {
    int type;
 
    vec3 position;
@@ -36,7 +37,44 @@ uniform struct Light {
 
    float valueA;
    float valueB;
-} lights[MAX_LIGHTS];
+} pointLights[MAX_POINT_LIGHTS];
+
+vec4 PointLight()
+{
+	vec3 lightVec = vec3(0.5f, 0.5f, 0.5f) - currentPos;
+
+	float dist = length(lightVec);
+	float a = 3.0;
+	float b = 0.7;
+	float intencity = 1.0f / (a * dist * dist + b * dist + 1.0f);
+
+
+	// ambient lighting
+	float ambient = 0.2f;
+
+	// diffuse lighting
+	vec3 normal = normalize(Normal);
+	vec3 lightDirection = normalize(lightVec);
+	float diffuse = max(dot(normal, lightDirection), 0.0f);
+
+	// specular lighting
+	float specular = 0.0f;
+
+	if(diffuse != 0.0f)
+	{
+		float specularLight = 0.50f;
+		vec3 viewDirection = normalize(camPos - currentPos);
+		vec3 reflectionDirection = reflect(-lightDirection, normal);
+
+		vec3 halfwayVec = normalize(viewDirection + lightDirection);
+
+		float specAmount = pow(max(dot(normal, halfwayVec), 0.0f), 16);
+		specular = specAmount * specularLight;
+	}
+
+	return (texture(diffuse0, texCoord) * (diffuse * intencity + directionalLightAmbient) + texture(specular0, texCoord).r * specular * intencity) * directionalLightColor;
+}
+
 
 vec4 DirectionalLight()
 {
@@ -50,14 +88,13 @@ vec4 DirectionalLight()
 
 	if(diffuse != 0.0f)
 	{
-		float specularLight = 0.20f;
 		vec3 viewDirection = normalize(camPos - currentPos);
 		vec3 reflectionDirection = reflect(-lightDirection, normal);
 
 		vec3 halfwayVec = normalize(viewDirection + lightDirection);
 
 		float specAmount = pow(max(dot(normal, halfwayVec), 0.0f), 16);
-		specular = specAmount * specularLight;
+		specular = specAmount * directionalLightSpecular;
 	}
 
 	return (texture(diffuse0, texCoord) * (diffuse + directionalLightAmbient) + texture(specular0, texCoord).r * specular) * directionalLightColor;
@@ -84,7 +121,12 @@ void main()
 
     vec4 calculatedLight = vec4(0f, 0f, 0f, 0f);
 
-	calculatedLight += DirectionalLight();
+	//calculatedLight += DirectionalLight();
+
+	for(int i = 0; i < pointLightsCount; i++)
+	{
+		calculatedLight += PointLight();
+	}
 
 	// outputs final color
 	float depth = LogisticDepth(gl_FragCoord.z);

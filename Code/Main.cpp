@@ -83,8 +83,9 @@ int main()
 	lightModel = glm::translate(lightModel, lightPos);
 
 	shaderProgram.Activate();
-	glUniform1i(glGetUniformLocation(shaderProgram.ID, "numLights"), 1);
+	glUniform1i(glGetUniformLocation(shaderProgram.ID, "pointLightsCount"), 1);
 	// glUniform1f(glGetUniformLocation(shaderProgram.ID, "lights[0].ambient"), 0.5f);
+	glUniform1f(glGetUniformLocation(shaderProgram.ID, "directionalLightSpecular"), 0.2f);
 	glUniform1f(glGetUniformLocation(shaderProgram.ID, "directionalLightAmbient"), 0.5f);
 	glUniform4f(glGetUniformLocation(shaderProgram.ID, "directionalLightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	glUniform3f(glGetUniformLocation(shaderProgram.ID, "directionalLightDirection"), lightPos.x, lightPos.y, lightPos.z);
