@@ -77,15 +77,17 @@ int main()
 	}
 
 	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	// light pos doesn't work with directional lights)
-	glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
+	glm::vec3 lightPos = glm::vec3(0.5f, 0.0f, 1.0f);
 	glm::mat4 lightModel = glm::mat4(1.0f);
 
 	lightModel = glm::translate(lightModel, lightPos);
 
 	shaderProgram.Activate();
-	glUniform4f(glGetUniformLocation(shaderProgram.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	glUniform1i(glGetUniformLocation(shaderProgram.ID, "numLights"), 1);
+	// glUniform1f(glGetUniformLocation(shaderProgram.ID, "lights[0].ambient"), 0.5f);
+	glUniform1f(glGetUniformLocation(shaderProgram.ID, "directionalLightAmbient"), 0.5f);
+	glUniform4f(glGetUniformLocation(shaderProgram.ID, "directionalLightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+	glUniform3f(glGetUniformLocation(shaderProgram.ID, "directionalLightDirection"), lightPos.x, lightPos.y, lightPos.z);
 	skyboxShader.Activate();
 	glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
 
